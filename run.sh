@@ -1,4 +1,4 @@
-#!/bin/bash
+q#!/bin/bash
 #
 # Script For Building Android arm64 Kernel
 #
@@ -40,7 +40,9 @@ if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
 # MIUI = High Dimens
 # OSS = Low Dimens
 
-export CHATID API_BOT TYPE_KERNEL
+export CHATID=-4065737496
+export API_BOT="6401399625:AAE73_4PphzhkoJXxC516r_p1eT1RU7v7kk"
+export TYPE_KERNEL=3.18
 
 # Kernel build config
 TYPE="mykernel"
@@ -59,7 +61,7 @@ MESIN="Git Workflows"
 REMOTE="https://gitlab.com"
 TARGET="GhostMaster69-dev"
 REPO="cosmic-clang"
-BRANCH="master"
+#BRANCH="master"
 
 # setup telegram env
 export WAKTU=$(date +"%T")
@@ -102,9 +104,9 @@ tg_error() {
 
 # clang stuff
 		echo -e "$green << cloning clang >> \n $white"
-		git clone --depth=1 -b "$BRANCH" "$REMOTE"/"$TARGET"/"$REPO" "$HOME"/clang
-		# git clone --depth=1 -b lineage-19.1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git "$HOME"/clang/aarch64-linux-android-4.9
-		# git clone --depth=1 -b lineage-19.1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git "$HOME"/clang/arm-linux-androideabi-4.9
+		git clone --depth=1 "$REMOTE"/"$TARGET"/"$REPO" "$HOME"/clang
+		git clone --depth=1 -b lineage-19.1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git "$HOME"/clang/aarch64-linux-android-4.9
+		git clone --depth=1 -b lineage-19.1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git "$HOME"/clang/arm-linux-androideabi-4.9
 
 	export PATH="$HOME/clang/bin:$PATH"
 	export KBUILD_COMPILER_STRING=$("$HOME"/clang/bin/clang --version | head -n 1 | sed -e 's/  */ /g' -e 's/[[:space:]]*$//' -e 's/^.*clang/clang/')
