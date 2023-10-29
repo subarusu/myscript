@@ -1,4 +1,4 @@
-q#!/bin/bash
+#!/bin/bash
 #
 # Script For Building Android arm64 Kernel
 #
@@ -40,9 +40,9 @@ if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
 # MIUI = High Dimens
 # OSS = Low Dimens
 
-export CHATID=-4065737496
+export CHATID="-4065737496"
 export API_BOT="6401399625:AAE73_4PphzhkoJXxC516r_p1eT1RU7v7kk"
-export TYPE_KERNEL=3.18
+export TYPE_KERNEL="3.18"
 
 # Kernel build config
 TYPE="mykernel"
@@ -102,9 +102,10 @@ tg_error() {
         -F caption="$3Failed to build , check <code>error.log</code>"
 }
 
+tg_post_msg "RUN BUILD"
 # clang stuff
 		echo -e "$green << cloning clang >> \n $white"
-		git clone --depth=1 "$REMOTE"/"$TARGET"/"$REPO" "$HOME"/clang
+		#git clone --depth=1 "$REMOTE"/"$TARGET"/"$REPO" "$HOME"/clang
 		git clone --depth=1 -b lineage-19.1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git "$HOME"/clang/aarch64-linux-android-4.9
 		git clone --depth=1 -b lineage-19.1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git "$HOME"/clang/arm-linux-androideabi-4.9
 
