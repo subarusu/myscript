@@ -40,7 +40,7 @@ if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
 # MIUI = High Dimens
 # OSS = Low Dimens
 
-export CHATID="-4065737496"
+export CHATID="-1002098413967"
 export API_BOT="6401399625:AAE73_4PphzhkoJXxC516r_p1eT1RU7v7kk"
 export TYPE_KERNEL="3.18"
 
@@ -77,7 +77,7 @@ tg_sticker() {
 }
 
 tg_post_msg() {
-        curl -s -X POST "$BOT_MSG_URL" -d chat_id="$2" \
+        curl -s -X POST "$BOT_MSG_URL" -d chat_id="$CHATID" \
         -d "parse_mode=markdown" \
         -d text="$1"
 }
@@ -88,7 +88,7 @@ tg_post_build() {
 
         #Show the Checksum alongwith caption
         curl --progress-bar -F document=@"$1" "$BOT_BUILD_URL" \
-        -F chat_id="$2" \
+        -F chat_id="$CHATID" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=markdown" \
         -F caption="$3 MD5 \`$MD5CHECK\`"
@@ -96,13 +96,11 @@ tg_post_build() {
 
 tg_error() {
         curl --progress-bar -F document=@"$1" "$BOT_BUILD_URL" \
-        -F chat_id="$2" \
+        -F chat_id="$CHATID" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
         -F caption="$3Failed to build , check <code>error.log</code>"
 }
-
-tg_post_msg "RUN BUILD"
 # clang stuff
 		echo -e "$green << cloning clang >> \n $white"
 		#git clone --depth=1 "$REMOTE"/"$TARGET"/"$REPO" "$HOME"/clang
